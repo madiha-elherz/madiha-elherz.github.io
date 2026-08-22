@@ -12,6 +12,8 @@
 </head>
 <body>
 
+<div class="preloader" id="preloader"></div>
+
 <svg class="thread" id="thread-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
   <path id="thread-path" d="" />
 </svg>
@@ -19,22 +21,41 @@
 
 <header class="topbar">
   <span class="mark">MEH</span>
-  <span class="clocks" id="clocks">PARIS —:— · SEOUL —:—</span>
+  <div class="topbar-right">
+    <span class="clocks" id="clocks">PARIS —:— · SEOUL —:— · NEW YORK —:—</span>
+    <button class="lang-toggle" id="lang-toggle" aria-label="Switch language / Changer de langue">
+      <span class="lang-option" data-lang-btn="en">EN</span><span class="lang-sep">/</span><span class="lang-option" data-lang-btn="fr">FR</span>
+    </button>
+  </div>
 </header>
 
-<nav class="rail" aria-label="Section index">
+<nav class="rail hidden" id="rail" aria-label="Section index">
   <ol>
-    <li><a href="#home" data-idx="00"><span class="idx">00</span><span class="label">Home</span></a></li>
-    <li><a href="#about" data-idx="01"><span class="idx">01</span><span class="label">About</span></a></li>
-    <li><a href="#experience" data-idx="02"><span class="idx">02</span><span class="label">Experience</span></a></li>
-    <li><a href="#work" data-idx="03"><span class="idx">03</span><span class="label">Selected Work</span></a></li>
-    <li><a href="#writing" data-idx="04"><span class="idx">04</span><span class="label">Writing</span></a></li>
-    <li><a href="#cv" data-idx="05"><span class="idx">05</span><span class="label">CV</span></a></li>
-    <li><a href="#contact" data-idx="06"><span class="idx">06</span><span class="label">Contact</span></a></li>
+    <li><a href="#home" data-idx="00"><span class="idx">00</span>
+      <span class="label lang-en">Home</span><span class="label lang-fr">Accueil</span>
+    </a></li>
+    <li><a href="#about" data-idx="01"><span class="idx">01</span>
+      <span class="label lang-en">About</span><span class="label lang-fr">À propos</span>
+    </a></li>
+    <li><a href="#experience" data-idx="02"><span class="idx">02</span>
+      <span class="label lang-en">Experience</span><span class="label lang-fr">Expérience</span>
+    </a></li>
+    <li><a href="#work" data-idx="03"><span class="idx">03</span>
+      <span class="label lang-en">Selected Work</span><span class="label lang-fr">Travaux Sélectionnés</span>
+    </a></li>
+    <li><a href="#writing" data-idx="04"><span class="idx">04</span>
+      <span class="label lang-en">Writing</span><span class="label lang-fr">Écrits</span>
+    </a></li>
+    <li><a href="#cv" data-idx="05"><span class="idx">05</span>
+      <span class="label lang-en">CV</span><span class="label lang-fr">CV</span>
+    </a></li>
+    <li><a href="#contact" data-idx="06"><span class="idx">06</span>
+      <span class="label lang-en">Contact</span><span class="label lang-fr">Contact</span>
+    </a></li>
   </ol>
 </nav>
 
-<button class="nav-toggle" id="nav-toggle" aria-label="Open navigation" aria-expanded="false">
+<button class="nav-toggle hidden" id="nav-toggle" aria-label="Open navigation" aria-expanded="false">
   <span></span><span></span><span></span>
 </button>
 
@@ -43,31 +64,45 @@
   <!-- 00 HOME -->
   <section id="home" class="section section--home">
     <div class="masthead">
-      <span>PARIS, FRANCE</span>
-      <span>DOSSIER No. 001</span>
+      <span class="lang-en">PARIS, FRANCE</span><span class="lang-fr">PARIS, FRANCE</span>
+      <span class="lang-en">DOSSIER No. 001</span><span class="lang-fr">DOSSIER N° 001</span>
       <span id="masthead-date">—</span>
     </div>
-    <div class="dossier-tag">DOSSIER · OPEN</div>
+    <div class="dossier-tag">
+      <span class="lang-en">DOSSIER · OPEN</span><span class="lang-fr">DOSSIER · OUVERT</span>
+    </div>
     <h1 class="name">Madiha<br>El&nbsp;Herz</h1>
-    <p class="tagline">International Communications <span class="sep">·</span> International Law &amp; Relations <span class="sep">·</span> Climate &amp; Development</p>
-    <a href="#about" class="cta-button">Discover my work <span class="arrow">→</span></a>
+    <p class="tagline lang-en">International Communications <span class="sep">·</span> International Law &amp; Relations <span class="sep">·</span> Climate &amp; Development</p>
+    <p class="tagline lang-fr">Communication Internationale <span class="sep">·</span> Droit &amp; Relations Internationales <span class="sep">·</span> Climat &amp; Développement</p>
+    <a href="#about" class="cta-button">
+      <span class="lang-en">Discover my work</span><span class="lang-fr">Découvrir mon travail</span>
+      <span class="arrow">→</span>
+    </a>
   </section>
 
   <!-- 01 ABOUT -->
   <section id="about" class="section section--about">
     <div class="section-head">
       <span class="idx-mark">01</span>
-      <h2>About</h2>
+      <h2><span class="lang-en">About</span><span class="lang-fr">À propos</span></h2>
     </div>
     <div class="about-grid">
       <div class="about-photo">
         <img src="assets/headshot.jpg" alt="Portrait of Madiha El Herz">
-        <div class="coord">OPEN TO OPPORTUNITIES · WORLDWIDE</div>
+        <div class="coord">
+          <span class="lang-en">OPEN TO OPPORTUNITIES · WORLDWIDE</span>
+          <span class="lang-fr">OUVERTE AUX OPPORTUNITÉS · À L'INTERNATIONAL</span>
+        </div>
       </div>
       <div class="about-text">
-        <p>I hold an advanced LLM in International and European Law, specialising in human rights, security, and development.</p>
-        <p>My work sits at the junction of <strong>international communications, international law and relations, and climate and development policy</strong> — built across legal advisory work in France and a communications posting with a climate and green-growth institution in Seoul. I translate dense policy and legal material into content that institutional, diplomatic, and public audiences can actually use.</p>
-        <p>Languages: French (native), English (fluent), Korean (basics), Moroccan Arabic (conversational understanding).</p>
+        <p class="lang-en">I hold an advanced LLM in International and European Law, specialising in human rights, security, and development.</p>
+        <p class="lang-fr">Je suis titulaire d'un LLM en Droit International et Européen, avec une spécialisation en droits humains, sécurité et développement.</p>
+
+        <p class="lang-en">My work sits at the junction of <strong>international communications, international law and relations, and climate and development policy</strong> — built across legal advisory work in France and a communications posting with a climate and green-growth institution in Seoul. I translate dense policy and legal material into content that institutional, diplomatic, and public audiences can actually use.</p>
+        <p class="lang-fr">Mon parcours se situe au croisement de <strong>la communication internationale, du droit et des relations internationales, et des politiques climatiques et de développement</strong> — construit entre un travail de conseil juridique en France et un poste en communication au sein d'une institution climatique et de croissance verte à Séoul. Je traduis des contenus juridiques et politiques complexes en supports que les publics institutionnels, diplomatiques et grand public peuvent réellement utiliser.</p>
+
+        <p class="lang-en">Languages: French (native), English (fluent), Korean (basics), Moroccan Arabic (conversational understanding).</p>
+        <p class="lang-fr">Langues : français (natif), anglais (courant), coréen (notions), arabe marocain (compréhension conversationnelle).</p>
       </div>
     </div>
   </section>
@@ -76,23 +111,37 @@
   <section id="experience" class="section section--experience">
     <div class="section-head">
       <span class="idx-mark">02</span>
-      <h2>Experience</h2>
+      <h2><span class="lang-en">Experience</span><span class="lang-fr">Expérience</span></h2>
     </div>
     <ol class="timeline">
       <li class="entry">
         <div class="entry-logo"><img src="assets/logo-gggi.png" alt="GGGI logo"></div>
         <div class="entry-body">
-          <h3>Communications Intern — Climate Action &amp; Inclusive Development</h3>
-          <div class="entry-org">Global Green Growth Institute (GGGI) · Seoul, South Korea</div>
-          <p>I supported end-to-end communications for a policy-oriented international organisation — multi-platform content, an institutional brochure built from an internal policy report, and coverage of GGGI's programming at COP29.</p>
+          <h3>
+            <span class="lang-en">Communications Intern — Climate Action &amp; Inclusive Development</span>
+            <span class="lang-fr">Stagiaire Communication — Action Climatique et Développement Inclusif</span>
+          </h3>
+          <div class="entry-org">
+            <span class="lang-en">Global Green Growth Institute (GGGI) · Seoul, South Korea</span>
+            <span class="lang-fr">Global Green Growth Institute (GGGI) · Séoul, Corée du Sud</span>
+          </div>
+          <p class="lang-en">I supported end-to-end communications for a policy-oriented international organisation — multi-platform content, an institutional brochure built from an internal policy report, and coverage of GGGI's programming at COP29.</p>
+          <p class="lang-fr">J'ai accompagné la communication de bout en bout pour une organisation internationale à vocation politique — contenus multiplateformes, une brochure institutionnelle conçue à partir d'un rapport interne, et la couverture des activités de GGGI à la COP29.</p>
         </div>
       </li>
       <li class="entry">
         <div class="entry-logo"><img src="assets/logo-pscore.jpg" alt="PSCORE logo"></div>
         <div class="entry-body">
-          <h3>Advocacy &amp; Research Intern — Human Rights</h3>
-          <div class="entry-org">PSCORE (People for Successful COrean Reunification) · Seoul, South Korea</div>
-          <p>I researched and produced advocacy content on North Korean human rights for international audiences, drafting press releases and digital communications on sensitive geopolitical material.</p>
+          <h3>
+            <span class="lang-en">Advocacy &amp; Research Intern — Human Rights</span>
+            <span class="lang-fr">Stagiaire Plaidoyer et Recherche — Droits Humains</span>
+          </h3>
+          <div class="entry-org">
+            <span class="lang-en">PSCORE (People for Successful COrean Reunification) · Seoul, South Korea</span>
+            <span class="lang-fr">PSCORE (People for Successful COrean Reunification) · Séoul, Corée du Sud</span>
+          </div>
+          <p class="lang-en">I researched and produced advocacy content on North Korean human rights for international audiences, drafting press releases and digital communications on sensitive geopolitical material.</p>
+          <p class="lang-fr">J'ai mené des recherches et produit des contenus de plaidoyer sur les droits humains en Corée du Nord à destination d'audiences internationales, en rédigeant communiqués de presse et communications digitales sur des sujets géopolitiques sensibles.</p>
         </div>
       </li>
       <li class="entry">
@@ -103,9 +152,16 @@
           </svg>
         </div>
         <div class="entry-body">
-          <h3>Head of Solidarity Department / Events Team</h3>
-          <div class="entry-org">Printemps Solidaire · Lille, France</div>
-          <p>I coordinated solidarity projects and field partnerships — including with the French Red Cross — supporting migrants and vulnerable populations in Northern France.</p>
+          <h3>
+            <span class="lang-en">Head of Solidarity Department / Events Team</span>
+            <span class="lang-fr">Responsable du Pôle Solidarité / Équipe Événementielle</span>
+          </h3>
+          <div class="entry-org">
+            <span class="lang-en">Printemps Solidaire · Lille, France</span>
+            <span class="lang-fr">Printemps Solidaire · Lille, France</span>
+          </div>
+          <p class="lang-en">I coordinated solidarity projects and field partnerships — including with the French Red Cross — supporting migrants and vulnerable populations in Northern France.</p>
+          <p class="lang-fr">J'ai coordonné des projets de solidarité et des partenariats de terrain — notamment avec la Croix-Rouge française — en soutien aux migrants et populations vulnérables du Nord de la France.</p>
         </div>
       </li>
       <li class="entry">
@@ -120,9 +176,16 @@
           </svg>
         </div>
         <div class="entry-body">
-          <h3>Legal Advisor (Volunteer)</h3>
-          <div class="entry-org">Bus de l'Accès au Droit · Calais / Lille, France</div>
-          <p>I advised asylum seekers on their rights and administrative procedures under French and European asylum law, conducting interviews in a multilingual humanitarian setting.</p>
+          <h3>
+            <span class="lang-en">Legal Advisor (Volunteer)</span>
+            <span class="lang-fr">Conseillère Juridique (Bénévole)</span>
+          </h3>
+          <div class="entry-org">
+            <span class="lang-en">Bus de l'Accès au Droit · Calais / Lille, France</span>
+            <span class="lang-fr">Bus de l'Accès au Droit · Calais / Lille, France</span>
+          </div>
+          <p class="lang-en">I advised asylum seekers on their rights and administrative procedures under French and European asylum law, conducting interviews in a multilingual humanitarian setting.</p>
+          <p class="lang-fr">J'ai conseillé des demandeurs d'asile sur leurs droits et les procédures administratives relevant du droit d'asile français et européen, en menant des entretiens dans un cadre humanitaire multilingue.</p>
         </div>
       </li>
     </ol>
@@ -132,27 +195,38 @@
   <section id="work" class="section section--work">
     <div class="section-head">
       <span class="idx-mark">03</span>
-      <h2>Selected Work</h2>
+      <h2><span class="lang-en">Selected Work</span><span class="lang-fr">Travaux Sélectionnés</span></h2>
     </div>
 
     <!-- Case 03.1 — Brochure flipbook -->
     <article class="case">
       <div class="case-head">
-        <span class="case-tag">CASE FILE — 03.1</span>
-        <h3>CAID Policy Brochure</h3>
-        <span class="case-org">GGGI, Seoul</span>
+        <span class="case-tag">
+          <span class="lang-en">CASE FILE — 03.1</span><span class="lang-fr">DOSSIER N° 03.1</span>
+        </span>
+        <h3><span class="lang-en">CAID Policy Brochure</span><span class="lang-fr">Brochure Politique CAID</span></h3>
+        <span class="case-org">
+          <span class="lang-en">GGGI, Seoul</span><span class="lang-fr">GGGI, Séoul</span>
+        </span>
       </div>
       <div class="case-body">
         <div class="case-text">
           <dl>
-            <dt>Context</dt>
-            <dd>GGGI's Climate Action and Inclusive Development unit needed its internal analytical reporting turned into a publication its partners and donors could actually read.</dd>
-            <dt>Role</dt>
-            <dd>Sole writer and designer for the brochure, working directly from the source report.</dd>
-            <dt>What I did</dt>
-            <dd>I identified the material worth keeping, restructured it into a clear narrative, and designed the full visual layout — knowledge-management data, key priorities and risks, and headline achievements — while holding institutional branding constant throughout.</dd>
-            <dt>Outcome</dt>
-            <dd>A finished multi-page publication used for partner and donor knowledge-sharing.</dd>
+            <dt><span class="lang-en">Context</span><span class="lang-fr">Contexte</span></dt>
+            <dd class="lang-en">GGGI's Climate Action and Inclusive Development unit needed its internal analytical reporting turned into a publication its partners and donors could actually read.</dd>
+            <dd class="lang-fr">L'unité Action Climatique et Développement Inclusif de GGGI avait besoin de transformer ses rapports analytiques internes en une publication réellement lisible par ses partenaires et bailleurs.</dd>
+
+            <dt><span class="lang-en">Role</span><span class="lang-fr">Rôle</span></dt>
+            <dd class="lang-en">Sole writer and designer for the brochure, working directly from the source report.</dd>
+            <dd class="lang-fr">Seule rédactrice et graphiste de la brochure, travaillant directement à partir du rapport source.</dd>
+
+            <dt><span class="lang-en">What I did</span><span class="lang-fr">Ce que j'ai fait</span></dt>
+            <dd class="lang-en">I identified the material worth keeping, restructured it into a clear narrative, and designed the full visual layout — knowledge-management data, key priorities and risks, and headline achievements — while holding institutional branding constant throughout.</dd>
+            <dd class="lang-fr">J'ai sélectionné les contenus essentiels, restructuré le tout en un récit clair, et conçu l'intégralité de la mise en page — données de gestion des connaissances, priorités et risques clés, réalisations phares — tout en respectant la charte institutionnelle de bout en bout.</dd>
+
+            <dt><span class="lang-en">Outcome</span><span class="lang-fr">Résultat</span></dt>
+            <dd class="lang-en">A finished multi-page publication used for partner and donor knowledge-sharing.</dd>
+            <dd class="lang-fr">Une publication multi-pages finalisée, utilisée pour le partage de connaissances avec les partenaires et bailleurs.</dd>
           </dl>
         </div>
         <div class="flipbook-wrap">
@@ -169,19 +243,28 @@
     <!-- Case 03.2 — COP29 / GGGWeek -->
     <article class="case">
       <div class="case-head">
-        <span class="case-tag">CASE FILE — 03.2</span>
+        <span class="case-tag">
+          <span class="lang-en">CASE FILE — 03.2</span><span class="lang-fr">DOSSIER N° 03.2</span>
+        </span>
         <h3>COP29 &amp; Global Green Growth Week</h3>
-        <span class="case-org">GGGI, Baku &amp; Seoul</span>
+        <span class="case-org">
+          <span class="lang-en">GGGI, Baku &amp; Seoul</span><span class="lang-fr">GGGI, Baku &amp; Séoul</span>
+        </span>
       </div>
       <div class="case-body">
         <div class="case-text">
           <dl>
-            <dt>Context</dt>
-            <dd>GGGI needed coordinated, on-brand coverage of its flagship annual conference and its COP29 programming on adaptation and resilience finance.</dd>
-            <dt>Role</dt>
-            <dd>Content producer for event postcards and speaker graphics.</dd>
-            <dt>What I did</dt>
-            <dd>I designed the event postcard for Global Green Growth Week 2024 and the speaker graphic for GGGI's COP29 session on adaptation and resilience finance, adapting both within strict branding guidelines. Click a post below to open it at full size.</dd>
+            <dt><span class="lang-en">Context</span><span class="lang-fr">Contexte</span></dt>
+            <dd class="lang-en">GGGI needed coordinated, on-brand coverage of its flagship annual conference and its COP29 programming on adaptation and resilience finance.</dd>
+            <dd class="lang-fr">GGGI avait besoin d'une couverture coordonnée et conforme à sa charte pour sa conférence annuelle phare ainsi que pour son programme à la COP29 sur le financement de l'adaptation et de la résilience.</dd>
+
+            <dt><span class="lang-en">Role</span><span class="lang-fr">Rôle</span></dt>
+            <dd class="lang-en">Content producer for event postcards and speaker graphics.</dd>
+            <dd class="lang-fr">Productrice de contenus pour les visuels d'événement et les graphismes des intervenants.</dd>
+
+            <dt><span class="lang-en">What I did</span><span class="lang-fr">Ce que j'ai fait</span></dt>
+            <dd class="lang-en">I designed the event postcard for Global Green Growth Week 2024 and the speaker graphic for GGGI's COP29 session on adaptation and resilience finance, adapting both within strict branding guidelines. Click a post below to open it at full size.</dd>
+            <dd class="lang-fr">J'ai conçu le visuel de l'événement Global Green Growth Week 2024 ainsi que le graphisme des intervenants pour la session GGGI à la COP29 sur le financement de l'adaptation et de la résilience, en respectant une charte graphique stricte. Cliquez sur une publication ci-dessous pour l'ouvrir en plein format.</dd>
           </dl>
         </div>
         <div class="laptop-wrap">
@@ -192,11 +275,13 @@
                 <div class="laptop-feed-row short"></div>
                 <div class="laptop-feed-card" data-postcard="assets/postcard-gggweek.jpg">
                   <img src="assets/postcard-gggweek.jpg" alt="">
-                  <span>Global Green Growth Week 2024 — click to open</span>
+                  <span class="lang-en">Global Green Growth Week 2024 — click to open</span>
+                  <span class="lang-fr">Global Green Growth Week 2024 — cliquez pour ouvrir</span>
                 </div>
                 <div class="laptop-feed-card" data-postcard="assets/postcard-cop29.jpg">
                   <img src="assets/postcard-cop29.jpg" alt="">
-                  <span>GGGI at COP29 — click to open</span>
+                  <span class="lang-en">GGGI at COP29 — click to open</span>
+                  <span class="lang-fr">GGGI à la COP29 — cliquez pour ouvrir</span>
                 </div>
                 <div class="laptop-feed-row"></div>
               </div>
@@ -206,7 +291,9 @@
             </div>
             <div class="laptop-base"></div>
           </div>
-          <button class="laptop-back" id="laptop-back">← back to feed</button>
+          <button class="laptop-back" id="laptop-back">
+            <span class="lang-en">← back to feed</span><span class="lang-fr">← retour au fil</span>
+          </button>
         </div>
       </div>
     </article>
@@ -214,17 +301,22 @@
     <!-- Case 03.3 — Multi-platform phones -->
     <article class="case">
       <div class="case-head">
-        <span class="case-tag">CASE FILE — 03.3</span>
-        <h3>Multi-Platform Institutional Content</h3>
+        <span class="case-tag">
+          <span class="lang-en">CASE FILE — 03.3</span><span class="lang-fr">DOSSIER N° 03.3</span>
+        </span>
+        <h3><span class="lang-en">Multi-Platform Institutional Content</span><span class="lang-fr">Contenu Institutionnel Multiplateforme</span></h3>
         <span class="case-org">GGGI &amp; PSCORE</span>
       </div>
       <div class="case-body">
         <div class="case-text">
           <dl>
-            <dt>Context</dt>
-            <dd>Two very different institutional voices — a climate-policy institute and a human-rights research NGO — each needed complex material made legible on Instagram.</dd>
-            <dt>What I did</dt>
-            <dd>I built structured visual post series translating policy and research topics into formats accessible to broader audiences, while keeping each organisation's editorial tone distinct.</dd>
+            <dt><span class="lang-en">Context</span><span class="lang-fr">Contexte</span></dt>
+            <dd class="lang-en">Two very different institutional voices — a climate-policy institute and a human-rights research NGO — each needed complex material made legible on Instagram.</dd>
+            <dd class="lang-fr">Deux voix institutionnelles très différentes — un institut de politique climatique et une ONG de recherche sur les droits humains — avaient chacune besoin de rendre des contenus complexes lisibles sur Instagram.</dd>
+
+            <dt><span class="lang-en">What I did</span><span class="lang-fr">Ce que j'ai fait</span></dt>
+            <dd class="lang-en">I built structured visual post series translating policy and research topics into formats accessible to broader audiences, while keeping each organisation's editorial tone distinct.</dd>
+            <dd class="lang-fr">J'ai conçu des séries de publications visuelles structurées, traduisant des sujets politiques et de recherche en formats accessibles à un public plus large, tout en conservant la ligne éditoriale propre à chaque organisation.</dd>
           </dl>
         </div>
         <div>
@@ -243,20 +335,23 @@
   <section id="writing" class="section section--writing">
     <div class="section-head">
       <span class="idx-mark">04</span>
-      <h2>Writing &amp; Research</h2>
+      <h2><span class="lang-en">Writing &amp; Research</span><span class="lang-fr">Écrits &amp; Recherche</span></h2>
     </div>
     <div class="writing-grid">
       <div class="writing-item">
-        <h3>Policy-to-publication editing — GGGI</h3>
-        <p>I restructured an internal analytical report on climate finance and adaptation into a public-facing brochure — the full editorial pass from source document to structured narrative. See Case File 03.1.</p>
+        <h3><span class="lang-en">Policy-to-publication editing — GGGI</span><span class="lang-fr">De la note interne à la publication — GGGI</span></h3>
+        <p class="lang-en">I restructured an internal analytical report on climate finance and adaptation into a public-facing brochure — the full editorial pass from source document to structured narrative. See Case File 03.1.</p>
+        <p class="lang-fr">J'ai restructuré un rapport analytique interne sur le financement climatique et l'adaptation en une brochure destinée au public — l'ensemble du travail éditorial, du document source au récit structuré. Voir Dossier N° 03.1.</p>
       </div>
       <div class="writing-item">
-        <h3>Human rights research — PSCORE</h3>
-        <p>I researched and documented North Korean human rights conditions for an international advocacy organisation, requiring precise, responsible handling of sensitive geopolitical material.</p>
+        <h3><span class="lang-en">Human rights research — PSCORE</span><span class="lang-fr">Recherche sur les droits humains — PSCORE</span></h3>
+        <p class="lang-en">I researched and documented North Korean human rights conditions for an international advocacy organisation, requiring precise, responsible handling of sensitive geopolitical material.</p>
+        <p class="lang-fr">J'ai mené des recherches et documenté la situation des droits humains en Corée du Nord pour une organisation de plaidoyer internationale, un travail exigeant une gestion précise et responsable de sujets géopolitiques sensibles.</p>
       </div>
       <div class="writing-item">
-        <h3>Cultural heritage protection — Printemps Solidaire</h3>
-        <p>I supported the organisation of a conference on the protection of cultural heritage, focused on environmental World Heritage sites, and contributed background research on heritage-protection frameworks.</p>
+        <h3><span class="lang-en">Cultural heritage protection — Printemps Solidaire</span><span class="lang-fr">Protection du patrimoine culturel — Printemps Solidaire</span></h3>
+        <p class="lang-en">I supported the organisation of a conference on the protection of cultural heritage, focused on environmental World Heritage sites, and contributed background research on heritage-protection frameworks.</p>
+        <p class="lang-fr">J'ai contribué à l'organisation d'une conférence sur la protection du patrimoine culturel, centrée sur les sites du patrimoine mondial environnemental, et participé aux recherches préparatoires sur les cadres juridiques de protection du patrimoine.</p>
       </div>
       <div class="writing-item">
         <h3>
@@ -268,13 +363,16 @@
             <circle cx="7" cy="18.5" r="1.6" fill="#D14B3D"/>
             <circle cx="17" cy="18.5" r="1.6" fill="#D14B3D"/>
           </svg>
-          Asylum &amp; migration law — Bus de l'Accès au Droit
+          <span class="lang-en">Asylum &amp; migration law — Bus de l'Accès au Droit</span>
+          <span class="lang-fr">Droit d'asile et des étrangers — Bus de l'Accès au Droit</span>
         </h3>
-        <p>I applied French and European asylum law to individual casework, translating statute and procedure into guidance beneficiaries could actually use.</p>
+        <p class="lang-en">I applied French and European asylum law to individual casework, translating statute and procedure into guidance beneficiaries could actually use.</p>
+        <p class="lang-fr">J'ai appliqué le droit d'asile français et européen à des dossiers individuels, en traduisant textes et procédures en conseils réellement utilisables par les bénéficiaires.</p>
       </div>
       <div class="writing-item">
-        <h3>Thesis — Protection of Cultural Heritage in Armed Conflict</h3>
-        <p>My academic thesis examined the international legal frameworks protecting cultural heritage during armed conflict, connecting humanitarian law with heritage-protection mechanisms.</p>
+        <h3><span class="lang-en">Thesis — Protection of Cultural Heritage in Armed Conflict</span><span class="lang-fr">Mémoire — La Protection du Patrimoine Culturel en Conflit Armé</span></h3>
+        <p class="lang-en">My academic thesis examined the international legal frameworks protecting cultural heritage during armed conflict, connecting humanitarian law with heritage-protection mechanisms.</p>
+        <p class="lang-fr">Mon mémoire universitaire a examiné les cadres juridiques internationaux protégeant le patrimoine culturel en période de conflit armé, en articulant droit humanitaire et mécanismes de protection du patrimoine.</p>
       </div>
     </div>
   </section>
@@ -288,11 +386,13 @@
     <div class="cv-panel">
       <div class="cv-summary">
         <h3>Madiha El Herz</h3>
-        <p class="cv-line">Strategic Communications · Climate Action · International Development</p>
-        <p class="cv-line">French (Native) · English (Fluent) · Korean (Basics) · Moroccan Arabic (Conversational)</p>
+        <p class="cv-line lang-en">Strategic Communications · Climate Action · International Development</p>
+        <p class="cv-line lang-fr">Communication Stratégique · Action Climatique · Développement International</p>
+        <p class="cv-line lang-en">French (Native) · English (Fluent) · Korean (Basics) · Moroccan Arabic (Conversational)</p>
+        <p class="cv-line lang-fr">Français (Natif) · Anglais (Courant) · Coréen (Notions) · Arabe Marocain (Conversationnel)</p>
       </div>
       <a class="cv-download" href="assets/Madiha-El-Herz-CV.pdf" download>
-        <span>Download CV</span>
+        <span class="lang-en">Download CV</span><span class="lang-fr">Télécharger le CV</span>
         <span class="cv-download-icon">↓</span>
       </a>
     </div>
@@ -310,7 +410,7 @@
         <span class="contact-value">madiha.elherz.applications@gmail.com</span>
       </a>
       <a class="contact-link" href="tel:+33666236831">
-        <span class="contact-label">Phone</span>
+        <span class="contact-label lang-en">Phone</span><span class="contact-label lang-fr">Téléphone</span>
         <span class="contact-value">+33 6 66 23 68 31</span>
       </a>
       <a class="contact-link" href="https://www.linkedin.com/in/madiha-el-herz-33a8bb20a/" target="_blank" rel="noopener">
@@ -318,11 +418,14 @@
         <span class="contact-value">Madiha El Herz ↗</span>
       </a>
       <div class="contact-link contact-link--static">
-        <span class="contact-label">Location</span>
-        <span class="contact-value">Paris, France — open worldwide</span>
+        <span class="contact-label lang-en">Location</span><span class="contact-label lang-fr">Localisation</span>
+        <span class="contact-value lang-en">Paris, France — open worldwide</span>
+        <span class="contact-value lang-fr">Paris, France — ouverte à l'international</span>
       </div>
     </div>
-    <div class="end-mark">END OF DOSSIER</div>
+    <div class="end-mark">
+      <span class="lang-en">END OF DOSSIER</span><span class="lang-fr">FIN DU DOSSIER</span>
+    </div>
   </section>
 
 </main>

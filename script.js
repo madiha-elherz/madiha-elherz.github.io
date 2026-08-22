@@ -1,4 +1,70 @@
 // ---------------------------------------------------------
+// Language toggle: EN / FR
+// ---------------------------------------------------------
+let currentLang = localStorage.getItem('meh-lang') || 'en';
+
+function updateMastheadDate() {
+  const el = document.getElementById('masthead-date');
+  if (!el) return;
+  const locale = currentLang === 'fr' ? 'fr-FR' : 'en-GB';
+  el.textContent = new Intl.DateTimeFormat(locale, { day: '2-digit', month: 'long', year: 'numeric' })
+    .format(new Date()).toUpperCase();
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  document.documentElement.setAttribute('lang', lang);
+  document.body.classList.toggle('is-fr', lang === 'fr');
+  document.querySelectorAll('.lang-option').forEach((opt) => {
+    opt.classList.toggle('is-active', opt.dataset.langBtn === lang);
+  });
+  localStorage.setItem('meh-lang', lang);
+  updateMastheadDate();
+  renderFlipbook();
+  clearTimeout(window.__threadResize);
+  window.__threadResize = setTimeout(buildThreadPath, 250);
+}
+
+const langToggle = document.getElementById('lang-toggle');
+if (langToggle) {
+  langToggle.addEventListener('click', () => setLang(currentLang === 'en' ? 'fr' : 'en'));
+}
+
+// ---------------------------------------------------------
+// Preloader: black screen fades into Home on load
+// ---------------------------------------------------------
+const preloader = document.getElementById('preloader');
+if (preloader) {
+  window.addEventListener('load', () => {
+    setTimeout(() => preloader.classList.add('hide'), 400);
+  });
+  // Fallback in case 'load' already fired or takes too long
+  setTimeout(() => preloader.classList.add('hide'), 2500);
+}
+
+// ---------------------------------------------------------
+// Menu reveal: hidden on Home, appears once you leave Home
+// (via the "Discover my work" click, or by scrolling past it)
+// ---------------------------------------------------------
+const railEl = document.getElementById('rail');
+const navToggleEl = document.getElementById('nav-toggle');
+function revealMenu() {
+  if (railEl) railEl.classList.remove('hidden');
+  if (navToggleEl) navToggleEl.classList.remove('hidden');
+}
+const ctaButton = document.querySelector('.cta-button');
+if (ctaButton) ctaButton.addEventListener('click', revealMenu);
+
+const homeSection = document.getElementById('home');
+if (homeSection) {
+  const homeObserver = new IntersectionObserver(
+    (entries) => entries.forEach((e) => { if (!e.isIntersecting) revealMenu(); }),
+    { threshold: 0 }
+  );
+  homeObserver.observe(homeSection);
+}
+
+// ---------------------------------------------------------
 // Live Paris / Seoul clock + masthead date
 // ---------------------------------------------------------
 function updateClocks() {
@@ -6,17 +72,11 @@ function updateClocks() {
   if (el) {
     const fmt = (tz) =>
       new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: tz }).format(new Date());
-    el.textContent = `PARIS ${fmt('Europe/Paris')} · SEOUL ${fmt('Asia/Seoul')}`;
+    el.textContent = `PARIS ${fmt('Europe/Paris')} · SEOUL ${fmt('Asia/Seoul')} · NEW YORK ${fmt('America/New_York')}`;
   }
 }
 updateClocks();
 setInterval(updateClocks, 30000);
-
-const mastheadDate = document.getElementById('masthead-date');
-if (mastheadDate) {
-  mastheadDate.textContent = new Intl.DateTimeFormat('en-GB', { day: '2-digit', month: 'long', year: 'numeric' })
-    .format(new Date()).toUpperCase();
-}
 
 // ---------------------------------------------------------
 // Celestial thread: a wavy path spanning full document height,
@@ -119,10 +179,28 @@ if (navToggle && rail) {
 // ---------------------------------------------------------
 const PAGE_COUNT = 9;
 let currentPage = 1;
+let flipbookEl = null;
+
+function renderFlipbook() {
+  if (!flipbookEl) return;
+  const prevBtn = document.getElementById('flip-prev');
+  const nextBtn = document.getElementById('flip-next');
+  const countLabel = document.getElementById('flip-count');
+  const pages = Array.from(flipbookEl.querySelectorAll('.flip-page'));
+
+  pages.forEach((p, idx) => p.classList.toggle('flipped', idx < currentPage - 1));
+  countLabel.textContent = currentLang === 'fr'
+    ? `Page ${currentPage} sur ${PAGE_COUNT}`
+    : `Page ${currentPage} / ${PAGE_COUNT}`;
+  prevBtn.disabled = currentPage <= 1;
+  nextBtn.disabled = currentPage >= PAGE_COUNT;
+  clearTimeout(window.__threadResize);
+  window.__threadResize = setTimeout(buildThreadPath, 400);
+}
 
 function initFlipbook() {
-  const flipbook = document.getElementById('flipbook');
-  if (!flipbook) return;
+  flipbookEl = document.getElementById('flipbook');
+  if (!flipbookEl) return;
   for (let i = 1; i <= PAGE_COUNT; i++) {
     const page = document.createElement('div');
     page.className = 'flip-page';
@@ -132,28 +210,15 @@ function initFlipbook() {
     img.alt = `Brochure page ${i}`;
     img.loading = 'lazy';
     page.appendChild(img);
-    flipbook.appendChild(page);
+    flipbookEl.appendChild(page);
   }
 
   const prevBtn = document.getElementById('flip-prev');
   const nextBtn = document.getElementById('flip-next');
-  const countLabel = document.getElementById('flip-count');
-  const pages = () => Array.from(flipbook.querySelectorAll('.flip-page'));
+  prevBtn.addEventListener('click', () => { if (currentPage > 1) { currentPage--; renderFlipbook(); } });
+  nextBtn.addEventListener('click', () => { if (currentPage < PAGE_COUNT) { currentPage++; renderFlipbook(); } });
 
-  function render() {
-    pages().forEach((p, idx) => p.classList.toggle('flipped', idx < currentPage - 1));
-    countLabel.textContent = `Page ${currentPage} / ${PAGE_COUNT}`;
-    prevBtn.disabled = currentPage <= 1;
-    nextBtn.disabled = currentPage >= PAGE_COUNT;
-    // page images may change layout height; rebuild thread shortly after
-    clearTimeout(window.__threadResize);
-    window.__threadResize = setTimeout(buildThreadPath, 400);
-  }
-
-  prevBtn.addEventListener('click', () => { if (currentPage > 1) { currentPage--; render(); } });
-  nextBtn.addEventListener('click', () => { if (currentPage < PAGE_COUNT) { currentPage++; render(); } });
-
-  render();
+  renderFlipbook();
 }
 initFlipbook();
 
@@ -176,3 +241,6 @@ if (laptop) {
 if (laptopBack) {
   laptopBack.addEventListener('click', () => laptop.classList.remove('open'));
 }
+
+// Apply the saved/default language now that all elements above exist
+setLang(currentLang);
